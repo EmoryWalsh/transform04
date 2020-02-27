@@ -33,3 +33,61 @@ See the file script for an example of the file format
 """
 def parse_file( fname, points, transform, screen, color ):
     file = open(fname, "r")
+    lines = file.readlines()
+    i = 0
+    for row in lines:
+        i += 1
+        row = row.strip('\n')
+        if(row != "quit"):
+            next = lines[i].strip('\n')
+
+        if(row == "line"):
+            nums = next.split(" ")
+            add_edge(points, int(nums[0]), int(nums[1]), int(nums[2]), int(nums[3]), int(nums[4]), int(nums[5]))
+
+        elif(row == "ident"):
+            ident(transform)
+
+        elif(row == "scale"):
+            nums = next.split(" ")
+            scale = make_scale(int(nums[0]), int(nums[1]), int(nums[2]))
+            matrix_mult(scale, transform)
+
+        elif(row == "move"):
+            nums = next.split(" ")
+            print nums
+            translate = make_translate(int(nums[0]), int(nums[1]), int(nums[2]))
+            print_matrix(translate)
+            print transform
+            matrix_mult(translate, transform)
+            print transform
+
+        elif(row == "rotate"):
+            nums = next.split(" ")
+            if(nums[0] == "x"):
+                rotate = make_rotX(nums[1])
+            if(nums[0] == "y"):
+                rotate = make_rotY(nums[1])
+            if(nums[0] == "z"):
+                rotate = make_rotZ(nums[1])
+            matrix_mult(rotate, transform)
+
+        elif(row == "apply"):
+            matrix_mult(transform, points)
+
+        elif(row == "display"):
+            clear_screen(screen)
+            draw_lines(points, screen, color)
+            display(screen)
+
+        elif(row == "save"):
+            name = lines[i].strip("\n")
+            clear_screen(screen)
+            draw_lines(points, screen, color)
+            #display(screen)
+            save_ppm(screen, 'binary.ppm')
+            save_ppm_ascii(screen, 'ascii.ppm')
+            save_extension(screen, name)
+
+        elif(row == "quit"):
+            file.close()
