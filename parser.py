@@ -55,12 +55,8 @@ def parse_file( fname, points, transform, screen, color ):
 
         elif(row == "move"):
             nums = next.split(" ")
-            #print nums
             translate = make_translate(int(nums[0]), int(nums[1]), int(nums[2]))
-            print_matrix(translate)
-            print_matrix(transform)
             matrix_mult(translate, transform)
-            #print transform
 
         elif(row == "rotate"):
             nums = next.split(" ")
