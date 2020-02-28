@@ -33,7 +33,6 @@ def make_rotX( theta ):
     rotX[1][2] = math.sin(theta)
     rotX[2][1] = -math.sin(theta)
     rotX[2][2] = math.cos(theta)
-    print_matrix(rotX)
     return rotX
 
 def make_rotY( theta ):
@@ -44,8 +43,6 @@ def make_rotY( theta ):
     rotY[0][2] = -math.sin(theta)
     rotY[2][0] = math.sin(theta)
     rotY[2][2] = math.cos(theta)
-    print_matrix(rotY)
-
     return rotY
 
 def make_rotZ( theta ):
@@ -56,8 +53,6 @@ def make_rotZ( theta ):
     rotZ[0][1] = math.sin(theta)
     rotZ[1][0] = -1 * math.sin(theta)
     rotZ[1][1] = math.cos(theta)
-    print_matrix(rotZ)
-
     return rotZ
 
 #print the matrix such that it looks like
