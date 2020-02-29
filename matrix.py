@@ -78,7 +78,6 @@ def ident( matrix ):
 #multiply m1 by m2, modifying m2 to be the product
 #m1 * m2 -> m2
 def matrix_mult( m1, m2 ):
-
     point = 0
     for row in m2:
         #get a copy of the next point
