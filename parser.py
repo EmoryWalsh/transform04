@@ -58,7 +58,6 @@ def parse_file( fname, points, transform, screen, color ):
             nums = next.split(" ")
             translate = make_translate(int(nums[0]), int(nums[1]), int(nums[2]))
             matrix_mult(translate, transform)
-            print_matrix(points)
 
         elif(row == "rotate"):
             nums = next.split(" ")
@@ -72,20 +71,15 @@ def parse_file( fname, points, transform, screen, color ):
 
         elif(row == "apply"):
              matrix_mult(transform, points)
-             print_matrix(points)
-
 
         elif(row == "display"):
-            #clear_screen(screen)
-            #print_matrix(points)
+            clear_screen(screen)
             draw_lines(points, screen, color)
             display(screen)
 
 
         elif(row == "save"):
             name = lines[i].strip("\n")
-            #clear_screen(screen)
-            #draw_lines(points, screen, color)
             display(screen)
             save_ppm(screen, 'binary.ppm')
             save_ppm_ascii(screen, 'ascii.ppm')
